@@ -21,7 +21,7 @@ Support following feature:
     'license': 'AGPL-3',
     'website': 'http://codup.com',
     'sequence': 0,
-    'depends': ['asset','web_map'],
+    'depends': ['asset', 'web_map'],
     'data': [
         'views/asset_view.xml',
     ],

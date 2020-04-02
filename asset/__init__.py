@@ -6,5 +6,4 @@
 #
 ##############################################################################
 
-from . import asset
-from . import stock
+from . import models
