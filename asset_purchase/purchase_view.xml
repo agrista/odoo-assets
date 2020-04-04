@@ -88,7 +88,7 @@
                             <div class="oe_kanban_vignette">
                                 <div class="codup_kanban_left">
                                     <a type="open"><img t-att-src="kanban_image('asset.asset', 'image_small', record.id.value)" class="oe_kanban_image"/></a>
-                                    <div t-attf-title="#{record.finance_state_id.value}" t-attf-class="codup_status_color_#{record.finance_state_color.raw_value} codup_status"></div>
+                                    <div t-attf-title="#{record.finance_state_id.value}" t-attf-class="asset-status-color-#{record.finance_state_color.raw_value} asset-status"></div>
                                 </div>
                                 <div class="oe_kanban_details">
                                     <h4>
@@ -167,10 +167,10 @@
                     <field name="id" />
                     <templates>
                         <t t-name="kanban-box">
-                            <div t-attf-class="oe_kanban_card codup_kanban_status oe_kanban_global_click">
+                            <div t-attf-class="oe_kanban_card asset-kanban-status oe_kanban_global_click">
                                 <div class="codup_kanban_left">
                                     <a type="open"><img t-att-src="kanban_image('asset.asset', 'image_small', record.id.value)" class="oe_kanban_image"/></a>
-                                    <div t-attf-title="#{record.finance_state_id.value}" t-attf-class="codup_status_color_#{record.finance_state_color.raw_value} codup_status"></div>
+                                    <div t-attf-title="#{record.finance_state_id.value}" t-attf-class="asset-status-color-#{record.finance_state_color.raw_value} asset-status"></div>
                                 </div>
                                 <div class="codup_kanban_details">
                                     <h4>

@@ -64,7 +64,7 @@ class AssetAsset(models.Model):
     """
     _name = 'asset.asset'
     _description = 'Asset'
-    _inherit = ['mail.thread']
+    _inherit = ['mail.thread', 'image.mixin']
 
     def _read_group_state_ids(self, domain, read_group_order=None, access_rights_uid=None, team='3'):
         access_rights_uid = access_rights_uid or self.uid
@@ -116,25 +116,13 @@ class AssetAsset(models.Model):
     maintenance_state_color = fields.Selection(related='maintenance_state_id.state_color',
                                                selection=STATE_COLOR_SELECTION, string="Color", readonly=True)
     criticality = fields.Selection(CRITICALITY_SELECTION, 'Criticality')
-    property_stock_asset = fields.Many2one(
-        'stock.location', "Asset Location",
-        company_dependent=True, domain=[('usage', 'like', 'asset')],
-        help="This location will be used as the destination location for installed parts during asset life.")
     user_id = fields.Many2one('res.users', 'Assigned to', track_visibility='onchange')
     active = fields.Boolean('Active', default=True)
     asset_number = fields.Char('Asset Number', size=64)
-    model = fields.Char('Model', size=64)
-    serial = fields.Char('Serial no.', size=64)
-    vendor_id = fields.Many2one('res.partner', 'Vendor')
-    manufacturer_id = fields.Many2one('res.partner', 'Manufacturer')
     start_date = fields.Date('Start Date')
     purchase_date = fields.Date('Purchase Date')
-    warranty_start_date = fields.Date('Warranty Start')
-    warranty_end_date = fields.Date('Warranty End')
-    image = fields.Binary("Image")
-    image_small = fields.Binary("Small-sized image")
-    image_medium = fields.Binary("Medium-sized image")
     category_ids = fields.Many2many('asset.category', id1='asset_id', id2='category_id', string='Tags')
+    location = fields.GeoPoint('Location')
 
     _group_by_full = {
         'finance_state_id': _read_group_finance_state_ids,
@@ -146,11 +134,16 @@ class AssetAsset(models.Model):
 
     @api.model
     def create(self, vals):
-        if 'image' in vals:
-            vals['image_small'] = vals['image_medium'] = vals['image']
-        return super(asset_asset, self).create(vals)
+        return super(AssetAsset, self).create(vals)
 
     def write(self, vals):
-        if 'image' in vals:
-            vals['image_small'] = vals['image_medium'] = vals['image']
-        return super(asset_asset, self).write(vals)
+        if 'image_1920' in vals:
+            self.env['asset.asset'].invalidate_cache(fnames=[
+                'image_1920',
+                'image_1024',
+                'image_512',
+                'image_256',
+                'image_128',
+                'can_image_1024_be_zoomed',
+            ])
+        return super(AssetAsset, self).write(vals)

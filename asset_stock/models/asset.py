@@ -13,4 +13,8 @@ from odoo.addons.asset.asset import STATE_COLOR_SELECTION
 class asset_asset(models.Model):
     _inherit = 'asset.asset'
 
+    property_stock_asset = fields.Many2one(
+        'stock.location', "Asset Location",
+        company_dependent=True, domain=[('usage', 'like', 'asset')],
+        help="This location will be used as the destination location for installed parts during asset life.")
     warehouse_state_color = fields.Selection(related='warehouse_state_id.state_color', selection=STATE_COLOR_SELECTION, string="Color", readonly=True)

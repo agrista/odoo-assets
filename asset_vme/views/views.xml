@@ -1,0 +1,60 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+<!--
+    <record model="ir.ui.view" id="asset_vme.list">
+      <field name="name">asset_vme list</field>
+      <field name="model">asset_vme.asset_vme</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </tree>
+      </field>
+    </record>
+-->
+
+    <!-- actions opening views on models -->
+<!--
+    <record model="ir.actions.act_window" id="asset_vme.action_window">
+      <field name="name">asset_vme window</field>
+      <field name="res_model">asset_vme.asset_vme</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+-->
+
+    <!-- server action to the one above -->
+<!--
+    <record model="ir.actions.server" id="asset_vme.action_server">
+      <field name="name">asset_vme server</field>
+      <field name="model_id" ref="model_asset_vme_asset_vme"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+    <!-- Top menu item -->
+<!--
+    <menuitem name="asset_vme" id="asset_vme.menu_root"/>
+-->
+    <!-- menu categories -->
+<!--
+    <menuitem name="Menu 1" id="asset_vme.menu_1" parent="asset_vme.menu_root"/>
+    <menuitem name="Menu 2" id="asset_vme.menu_2" parent="asset_vme.menu_root"/>
+-->
+    <!-- actions -->
+<!--
+    <menuitem name="List" id="asset_vme.menu_1_list" parent="asset_vme.menu_1"
+              action="asset_vme.action_window"/>
+    <menuitem name="Server to list" id="asset_vme" parent="asset_vme.menu_2"
+              action="asset_vme.action_server"/>
+-->
+  </data>
+</odoo>
