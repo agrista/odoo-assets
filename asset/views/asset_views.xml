@@ -82,9 +82,11 @@
                                                             </group>
                             -->
                         </page>
+<!--
                         <page string="Location">
                             <field name="location" widget="geo_edit_map"/>
                         </page>
+-->
                     </notebook>
                 </sheet>
                 <div class="oe_chatter">
@@ -175,7 +177,6 @@
         </field>
     </record>
 
-
     <!-- Asset search view -->
     <record id="asset_view_search" model="ir.ui.view">
         <field name="name">asset.view.search</field>
@@ -203,7 +204,6 @@
         </field>
     </record>
 
-
     <!-- Main asset action  -->
     <record id="asset_action" model="ir.actions.act_window">
         <field name="name">Assets</field>
@@ -212,7 +212,6 @@
         <field name="view_mode">kanban,tree,form</field>
         <field name="view_id" eval="False"/>
     </record>
-
 
     <!-- Asset action view kanban -->
     <record id="asset_action_kanban" model="ir.actions.act_window.view">
@@ -240,12 +239,11 @@
 
     <!-- Assets sub-menu item -->
     <menuitem id="asset_menu_assets_assets"
-              name="All Assets"
+              name="Assets"
               action="asset_action"
               parent="asset.asset_menu_assets"
               groups="asset.group_asset_customer"
               sequence="10"/>
-
 
     <!-- Asset view kanban state -->
     <record id="asset_view_state_kanban" model="ir.ui.view">
@@ -324,7 +322,6 @@
         </field>
     </record>
 
-
     <!-- Asset action state  -->
     <record id="asset_action_state" model="ir.actions.act_window">
         <field name="name">States</field>
@@ -342,123 +339,11 @@
         <field name="act_window_id" ref="asset_action_state"/>
     </record>
 
-    <!-- Asset states sub-menu item -->
-    <menuitem id="asset_menu_assets_state"
-              name="States"
-              action="asset_action_state"
-              parent="asset.asset_menu_assets"
-              groups="asset.group_asset_user"
-              sequence="100"/>
-
-    <!-- Assets report menu item -->
-    <menuitem id="asset_menu_assets_reports"
-              name="Reports"
-              parent="asset.asset_menu_root"
-              groups="asset.group_asset_customer"
-              sequence="30"/>
-
     <!-- Configuration menu item -->
     <menuitem id="asset_menu_config"
               name="Configuration"
               parent="asset.asset_menu_root"
               groups="asset.group_asset_manager"
               sequence="200"/>
-
-
-    <!-- Asset state form view -->
-    <record id="asset_state_view_form" model="ir.ui.view">
-        <field name="name">asset.state.view.form</field>
-        <field name="model">asset.state</field>
-        <field name="arch" type="xml">
-            <form string="State" version="7.0">
-                <sheet>
-                    <div class="oe_title">
-                        <label for="name"/>
-                        <h1>
-                            <field name="name" class="oe_inline"/>
-                        </h1>
-                    </div>
-                    <group>
-                        <group>
-                            <field name="state_color"/>
-                            <field name="team"/>
-                        </group>
-                        <group>
-                        </group>
-                    </group>
-                </sheet>
-            </form>
-        </field>
-    </record>
-
-    <!-- Asset state kanban View  -->
-    <record id="asset_state_view_kanban" model="ir.ui.view">
-        <field name="name">asset.state.view.kanban</field>
-        <field name="model">asset.state</field>
-        <field name="arch" type="xml">
-            <kanban default_group_by="team">
-                <field name="name"/>
-                <field name="team"/>
-                <field name="state_color"/>
-                <field name="sequence" widget="handle"/>
-                <templates>
-                    <t t-name="kanban-box">
-                        <div t-attf-class="oe_kanban_card asset-kanban-status oe_kanban_global_click">
-                            <h4>
-                                <a name="change_color" string="Change color" type="object">
-                                    <span t-attf-class="asset-status-color-#{record.state_color.raw_value} asset-status"/>
-                                </a>
-                                <field name="name"/>
-                            </h4>
-                        </div>
-                    </t>
-                </templates>
-            </kanban>
-        </field>
-    </record>
-
-    <!-- Asset state action  -->
-    <record id="asset_state_action" model="ir.actions.act_window">
-        <field name="name">Asset States</field>
-        <field name="type">ir.actions.act_window</field>
-        <field name="res_model">asset.state</field>
-        <field name="view_mode">kanban,form</field>
-    </record>
-
-    <!-- Asset state item -->
-    <menuitem id="asset_menu_state"
-              name="Asset States"
-              action="asset_state_action"
-              parent="asset.asset_menu_config"
-              groups="asset.group_asset_manager"
-              sequence="100"/>
-
-
-    <!--> Asset category tree view -->
-    <record id="asset_category_view_tree" model="ir.ui.view">
-        <field name="name">asset.category.view.tree</field>
-        <field name="model">asset.category</field>
-        <field name="arch" type="xml">
-            <tree string="Asset Tags" editable="top">
-                <field name="name"/>
-            </tree>
-        </field>
-    </record>
-
-    <!-- Asset category action -->
-    <record id="asset_category_action" model="ir.actions.act_window">
-        <field name="name">Asset Tags</field>
-        <field name="type">ir.actions.act_window</field>
-        <field name="res_model">asset.category</field>
-        <field name="view_mode">tree</field>
-    </record>
-
-    <!-- Asset category menu item -->
-    <menuitem id="asset_menu_category"
-              name="Asset Tags"
-              action="asset_category_action"
-              parent="asset.asset_menu_config"
-              groups="asset.group_asset_manager"
-              sequence="100"/>-->
 
 </odoo>

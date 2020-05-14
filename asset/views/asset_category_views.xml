@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!--> Asset category tree view -->
+    <record id="asset_category_view_tree" model="ir.ui.view">
+        <field name="name">asset.category.view.tree</field>
+        <field name="model">asset.category</field>
+        <field name="arch" type="xml">
+            <tree string="Asset Tags" editable="top">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Asset category action -->
+    <record id="asset_category_action" model="ir.actions.act_window">
+        <field name="name">Asset Tags</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">asset.category</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+    <!-- Asset category menu item -->
+    <menuitem id="asset_menu_category"
+              name="Asset Tags"
+              action="asset_category_action"
+              parent="asset.asset_menu_config"
+              groups="asset.group_asset_manager"
+              sequence="100"/>-->
+
+</odoo>

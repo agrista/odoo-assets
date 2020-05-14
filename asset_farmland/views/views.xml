@@ -1,0 +1,27 @@
+<odoo>
+<!--
+        <record id="asset_farmland_view_tree" model="ir.ui.view">
+            <field name="name">asset.farmland.view.tree</field>
+            <field name="model">asset.farmland</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="boundary"/>
+                    &lt;!&ndash;                    <field name="registrar"/>&ndash;&gt;
+                </tree>
+            </field>
+        </record>
+
+        <record id="asset_farmland_action" model="ir.actions.act_window">
+            <field name="name">Farmland</field>
+            <field name="res_model">asset.farmland</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="asset_farmland_menu_farmland"
+                  name="Farmland"
+                  parent="asset.asset_menu_assets"
+                  action="asset_farmland_action"
+                  sequence="20"/>
+-->
+</odoo>

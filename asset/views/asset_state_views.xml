@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Asset states sub-menu item -->
+    <menuitem id="asset_menu_assets_state"
+              name="States"
+              action="asset_action_state"
+              parent="asset.asset_menu_assets"
+              groups="asset.group_asset_user"
+              sequence="100"/>
+
+    <!-- Asset state form view -->
+    <record id="asset_state_view_form" model="ir.ui.view">
+        <field name="name">asset.state.view.form</field>
+        <field name="model">asset.state</field>
+        <field name="arch" type="xml">
+            <form string="State" version="7.0">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1>
+                            <field name="name" class="oe_inline"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="state_color"/>
+                            <field name="team"/>
+                        </group>
+                        <group>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Asset state kanban View  -->
+    <record id="asset_state_view_kanban" model="ir.ui.view">
+        <field name="name">asset.state.view.kanban</field>
+        <field name="model">asset.state</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="team">
+                <field name="name"/>
+                <field name="team"/>
+                <field name="state_color"/>
+                <field name="sequence" widget="handle"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_card asset-kanban-status oe_kanban_global_click">
+                            <h4>
+                                <a name="change_color" string="Change color" type="object">
+                                    <span t-attf-class="asset-status-color-#{record.state_color.raw_value} asset-status"/>
+                                </a>
+                                <field name="name"/>
+                            </h4>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- Asset state action  -->
+    <record id="asset_state_action" model="ir.actions.act_window">
+        <field name="name">Asset States</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">asset.state</field>
+        <field name="view_mode">kanban,form</field>
+    </record>
+
+    <!-- Asset state item -->
+    <menuitem id="asset_menu_state"
+              name="Asset States"
+              action="asset_state_action"
+              parent="asset.asset_menu_config"
+              groups="asset.group_asset_manager"
+              sequence="100"/>
+
+</odoo>

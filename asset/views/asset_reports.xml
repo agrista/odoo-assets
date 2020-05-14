@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Assets report menu item -->
+    <menuitem id="asset_menu_assets_reports"
+              name="Reports"
+              parent="asset.asset_menu_root"
+              groups="asset.group_asset_customer"
+              sequence="30"/>
+</odoo>

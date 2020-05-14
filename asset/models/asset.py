@@ -51,8 +51,8 @@ class AssetState(models.Model):
 
 
 class AssetCategory(models.Model):
-    _description = 'Asset Tags'
     _name = 'asset.category'
+    _description = 'Asset Tags'
 
     name = fields.Char('Tag', required=True, translate=True)
     asset_ids = fields.Many2many('asset.asset', id1='category_id', id2='asset_id', string='Assets')
@@ -63,7 +63,7 @@ class AssetAsset(models.Model):
     Assets
     """
     _name = 'asset.asset'
-    _description = 'Asset'
+    _description = 'Assets'
     _inherit = ['mail.thread', 'image.mixin']
 
     def _read_group_state_ids(self, domain, read_group_order=None, access_rights_uid=None, team='3'):
@@ -120,6 +120,7 @@ class AssetAsset(models.Model):
     active = fields.Boolean('Active', default=True)
     asset_number = fields.Char('Asset Number', size=64)
     start_date = fields.Date('Start Date')
+    end_date = fields.Date('End Date')
     purchase_date = fields.Date('Purchase Date')
     category_ids = fields.Many2many('asset.category', id1='asset_id', id2='category_id', string='Tags')
     location = fields.GeoPoint('Location')
