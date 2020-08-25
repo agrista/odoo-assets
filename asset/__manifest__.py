@@ -28,7 +28,7 @@ Support following feature:
     'license': 'AGPL-3',
     'category': 'Industries',
     'sequence': 0,
-    'depends': ['base', 'stock', 'base_geo'],
+    'depends': ['base', 'stock', 'base_geoengine'],
     'demo': ['asset_demo.xml'],
     'data': [
         'security/asset_security.xml',
